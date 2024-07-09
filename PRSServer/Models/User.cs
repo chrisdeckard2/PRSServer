@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography.X509Certificates;
 
 namespace PRSServer.Models;
@@ -11,7 +12,7 @@ namespace PRSServer.Models;
 public class User {
 
     public int Id { get; set; }
-    //1,1
+    
     
     [StringLength(30)]
     public string Username { get; set; } = string.Empty;
@@ -31,8 +32,10 @@ public class User {
     [StringLength (255)]
     public string? Email { get; set; }
 
+    [Column(TypeName = "bit")]
     public bool IsReviewer { get; set; }
 
+    [Column(TypeName = "bit")]
     public bool IsAdmin {  get; set; }
     
    

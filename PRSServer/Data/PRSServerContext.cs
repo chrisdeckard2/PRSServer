@@ -16,5 +16,8 @@ namespace PRSServer.Data
 
         public DbSet<PRSServer.Models.User> User { get; set; } = default!;
         public DbSet<PRSServer.Models.Vendor> Vendor { get; set; } = default!;
+        public DbSet<PRSServer.Models.Product> Product { get; set; } = default!;
+        public DbSet<PRSServer.Models.Request> Request { get; set; } = default!;
+        public DbSet<PRSServer.Models.RequestLine> RequestLine { get; set; } = default!;
     }
 }
