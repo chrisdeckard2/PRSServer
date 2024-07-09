@@ -42,6 +42,29 @@ namespace PRSServer.Controllers
             return requestLine;
         }
 
+        //[HttpPut("{requestId}")]
+        private async Task<IActionResult> RecalculateRequestTotal(int id) {
+            var request = await _context.Request.FindAsync(id);
+
+            if (request == null) {
+                return NotFound();
+            }
+
+
+            request.Total = (from rl in _context.RequestLine
+
+            join p in _context.Product
+            on rl.ProductId equals p.Id
+            where rl.Id == id
+            select (rl.Quantity * p.Price)).Sum();
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+
+
         // PUT: api/RequestLines/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -70,6 +93,7 @@ namespace PRSServer.Controllers
                 }
             }
 
+            await RecalculateRequestTotal(id);
             return NoContent();
         }
 
@@ -96,6 +120,8 @@ namespace PRSServer.Controllers
 
             _context.RequestLine.Remove(requestLine);
             await _context.SaveChangesAsync();
+            await RecalculateRequestTotal(id);
+            
 
             return NoContent();
         }
