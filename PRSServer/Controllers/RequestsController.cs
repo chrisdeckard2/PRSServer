@@ -70,9 +70,9 @@ namespace PRSServer.Controllers
             if (request == null) {
                 return NotFound();
             } else if (request.Total <= 50) {
-                request.Status = "Approved";
+                request.Status = "APPROVED";
             } else {
-                request.Status = "Review";
+                request.Status = "REVIEW";
             }
             _context.Entry(request).State = EntityState.Modified;
             _context.SaveChanges();
@@ -90,7 +90,7 @@ namespace PRSServer.Controllers
             if (request == null) {
                 return NotFound();
             }
-            request.Status = "Approved";
+            request.Status = "APPROVED";
             _context.Entry(request).State = EntityState.Modified;
             _context.SaveChanges();
             return request;
@@ -107,7 +107,7 @@ namespace PRSServer.Controllers
             if (request == null) {
                 return NotFound();
             }
-            request.Status = "Rejected";
+            request.Status = "REJECTED";
             _context.Entry(request).State = EntityState.Modified;
             
             _context.SaveChanges();
@@ -155,7 +155,7 @@ namespace PRSServer.Controllers
         {
 
             request.DeliveryMode = "Pickup";
-            request.Status = "New";
+            request.Status = "NEW";
             request.Total = 0;
             _context.Request.Add(request);
             await _context.SaveChangesAsync();
