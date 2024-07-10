@@ -14,6 +14,8 @@ public class RequestLine {
 
     public int Quantity { get; set; } = 1;
 
+    //[JsonIgnore]
+
     public virtual  Request? Requests { get; set; }
 
     public virtual Product? Products { get; set; }
