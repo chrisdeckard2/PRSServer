@@ -13,12 +13,15 @@ public class Program {
 
         builder.Services.AddControllers();
 
+        builder.Services.AddCors();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
 
         app.UseAuthorization();
 
+        app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
         app.MapControllers();
 
