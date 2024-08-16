@@ -13,7 +13,7 @@ public class Program {
 
         builder.Services.AddControllers();
 
-        builder.Services.AddCors();
+       /// builder.Services.AddCors();
 
         var app = builder.Build();
 
@@ -21,7 +21,7 @@ public class Program {
 
         app.UseAuthorization();
 
-        app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+        ///app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
         app.MapControllers();
 
